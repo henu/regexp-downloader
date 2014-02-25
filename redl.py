@@ -97,12 +97,15 @@ def main():
 			if a_url in urls_met:
 				continue
 
-			# Add URL to containers
+			# Add URL to containers. Prioritize
+			# URLs that need downloading
 			urls_met.add(a_url)
-			if crawl_re.match(a_url) or download_re.match(a_url):
+			if download_re.match(a_url):
 				urls_to_handle.append(a_url)
 				urls_to_handle_total += 1
-
+			elif crawl_re.match(a_url):
+				urls_to_handle.insert(0, a_url)
+				urls_to_handle_total += 1
 if __name__ == '__main__':
 	try:
 		main()

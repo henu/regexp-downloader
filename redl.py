@@ -4,6 +4,7 @@ import re
 import urllib
 import os
 import BeautifulSoup
+import urlparse
 
 def main():
 
